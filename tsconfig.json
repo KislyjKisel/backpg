@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "strict": true,
+        "target": "es6",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "removeComments": true,
+        "outDir": "dist",
+        "rootDir": "src",
+        "baseUrl": "src",
+        "paths": {
+            "@constants/*": ["constants/*"],
+            "@controllers/*": ["controllers/*"],
+            "@errors/*": ["errors/*"],
+            "@middlewares/*": ["middlewares/*"],
+            "@repositories/*": ["repositories/*"],
+            "@routes/*": ["routes/*"],
+            "@services/*": ["services/*"],
+            "@util/*": ["util/*"],
+            "@validation/*": ["validation/*"],
+        }
+    },
+    "lib": ["es2015"],
+    "include": [
+        "src/"
+    ]
+}

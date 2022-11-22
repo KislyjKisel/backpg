@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int     @id @default(autoincrement())
+  login        String  @unique @db.VarChar(env("LOGIN_MAX_LENGTH"))
+  passwordHash String  @db.VarChar(128)
+  firstName    String  @db.VarChar(env("FIRSTNAME_MAX_LENGTH"))
+  lastName     String  @db.VarChar(env("LASTNAME_MAX_LENGTH"))
+  posts        Post[]  @relation("Posts")
+}
+
+model Post {
+  id       Int    @id @default(autoincrement())
+  title    String @db.VarChar("POST_TITLE_MAX_LENGTH")
+  author   User   @relation(name: "Posts", fields: [authorId], references: [id])
+  authorId Int
+  text     String @db.VarChar("POST_TEXT_MAX_LENGTH")
+}
