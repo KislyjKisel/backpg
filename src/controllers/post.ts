@@ -9,13 +9,12 @@ const createPostController: Controller<{ title: string, text: string }> = async 
         if(!req.auth) {
             throw new InternalError(InternalErrorCodes.NOT_AUTHENTICATED);
         }
-        console.log('!!!!', req.body);
         const createdPost = await services.create({
             title: req.body.title,
             text: req.body.text,
             authorId: req.auth.id,
         });
-        res.status(StatusCodes.OK).send(createdPost);
+        res.status(StatusCodes.CREATED).send(createdPost);
     }
     catch(e) {
         next(e);

@@ -30,13 +30,10 @@ const AUTH_SCHEME_PREFIX = 'Bearer ';
 export const AUTH_SCHEME_PREFIX_LENGTH = AUTH_SCHEME_PREFIX.length;
 const AUTH_HEADER_REGEX = new RegExp(AUTH_SCHEME_PREFIX + tokenRegexString); 
 
-// todo: what headers should be allowed?
 const tokens = {
-    [Segments.HEADERS]: {
+    [Segments.HEADERS]: Joi.object({
         authorization: Joi.string().pattern(AUTH_HEADER_REGEX).required(),
-        ['content-type']: Joi.any(),
-        ['content-length']: Joi.any(),
-    },
+    }).unknown(true),
 };
 
 export const authSchema = Joi.object({

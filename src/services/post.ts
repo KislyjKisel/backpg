@@ -19,7 +19,7 @@ const viewPostService: Service<
 > = async ({ postId }) => {
     const post = await findPostById(postId);
     if(post === null) {
-        throw new PostError(PostErrorCodes.POST_ID_INVALID);
+        throw new PostError(PostErrorCodes.POST_NOT_FOUND);
     }
     return {
         title: post.title,

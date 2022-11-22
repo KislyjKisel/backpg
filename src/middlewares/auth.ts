@@ -1,4 +1,4 @@
-import { celebrate } from 'celebrate';
+import { celebrate, CelebrateError } from 'celebrate';
 import { ErrorRequestHandler, RequestHandler } from 'express';
 import { jwtAccessKey } from '@constants/auth';
 import { InternalErrorCodes } from '../constants/errors/internal';
@@ -9,6 +9,7 @@ import validation, { AUTH_SCHEME_PREFIX_LENGTH } from '@validation/auth';
 import { StatusCodes } from 'http-status-codes';
 import { NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
 import { AccessTokenPayload } from '@services/auth';
+import { AuthErrorCodes } from '../constants/errors/auth';
 
 export type AuthOptions = {
     /** true by default */
@@ -38,8 +39,20 @@ function authMiddleware(opts: AuthOptions): RequestHandler {
     };
 }
 
-export function auth(opts: AuthOptions): [RequestHandler, RequestHandler] {
-    return [celebrate(validation.tokens), authMiddleware(opts)];
+export function auth(opts: AuthOptions): [RequestHandler, ErrorRequestHandler, RequestHandler] {
+    const authValidationErrorHandler: ErrorRequestHandler = (err, _req, res, next) => {
+        if(!(err instanceof CelebrateError)) {
+            next(err);
+            return;
+        }
+        res.status(StatusCodes.UNAUTHORIZED).send(err.message);
+    };
+
+    return [
+        celebrate(validation.tokens),
+        authValidationErrorHandler,
+        authMiddleware(opts)
+    ];
 }
 
 export const authServicesErrorHandler: ErrorRequestHandler = (err, req, res, next) => {

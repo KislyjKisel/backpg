@@ -2,17 +2,17 @@ import { StatusCodes } from 'http-status-codes';
 import { ErrorMessages, ErrorNames, ErrorStatuses } from './common';
 
 export enum PostErrorCodes {
-    POST_ID_INVALID = 1,
+    POST_NOT_FOUND = 1,
 }
 
 export const PostErrorNames: ErrorNames<PostErrorCodes> = {
-    [PostErrorCodes.POST_ID_INVALID]: 'POST_ID_INVALID',
+    [PostErrorCodes.POST_NOT_FOUND]: 'POST_NOT_FOUND',
 };
 
 export const PostErrorMessages: ErrorMessages<PostErrorCodes> = {
-    [PostErrorCodes.POST_ID_INVALID]: 'Post id invalid',
+    [PostErrorCodes.POST_NOT_FOUND]: 'Post not found',
 };
 
 export const PostErrorStatuses: ErrorStatuses<PostErrorCodes> = {
-    [PostErrorCodes.POST_ID_INVALID]: StatusCodes.CONFLICT
+    [PostErrorCodes.POST_NOT_FOUND]: StatusCodes.NOT_FOUND
 };
