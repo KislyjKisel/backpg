@@ -42,15 +42,15 @@ export function auth(opts: AuthOptions): [RequestHandler, RequestHandler] {
     return [celebrate(validation.tokens), authMiddleware(opts)];
 }
 
-export const authErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+export const authServicesErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     if(!(err instanceof AuthError)) {
-        tokenErrorHandler(err, req, res, next); // refresh can fail on bad tokens
+        authMiddlewareErrorHandler(err, req, res, next); // refresh can fail on bad tokens
         return;
     }
     res.status(err.status).send(err.message);
 };
 
-export const tokenErrorHandler: ErrorRequestHandler = (err, _req, res, next) => {
+export const authMiddlewareErrorHandler: ErrorRequestHandler = (err, _req, res, next) => {
     if(err instanceof TokenExpiredError) {
         res.status(StatusCodes.UNAUTHORIZED).send('Token expired');
         return;

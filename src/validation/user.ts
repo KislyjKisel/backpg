@@ -3,7 +3,7 @@ import { loginSchema } from './common';
 
 const user = {
     [Segments.QUERY]: {
-        login: loginSchema,
+        login: loginSchema.required(),
     },
 };
 

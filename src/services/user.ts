@@ -3,7 +3,7 @@ import { UserErrorCodes } from '../constants/errors/user';
 import { AuthError } from '../errors/auth';
 import { UserError } from '../errors/user';
 import { findUserByLogin } from '../repositories/user';
-import { Service } from './common';  
+import { Service } from './common';
 
 const user: Service<
     { viewerId: number, viewedLogin: string },

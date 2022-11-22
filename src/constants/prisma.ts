@@ -1,3 +1,4 @@
 export enum PrismaKnownErrorCodes {
-    UniqueConstraintFailed = 'P2002'
+    WhereSearchFailed = 'P2001',
+    UniqueConstraintFailed = 'P2002',
 }
