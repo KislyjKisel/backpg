@@ -1,6 +1,6 @@
 import { Segments, Joi } from 'celebrate';
 import { tokenRegexString } from '../util/jwt';
-import { loginSchema, passwordSchema, firstNameSchema, lastNameSchema } from './user';
+import { loginSchema, passwordSchema, firstNameSchema, lastNameSchema } from './common';
 
 export const TTL_PATTERN = /^\d+[smh]$/;
 
@@ -31,10 +31,14 @@ export const AUTH_SCHEME_PREFIX_LENGTH = AUTH_SCHEME_PREFIX.length;
 const AUTH_HEADER_REGEX = new RegExp(AUTH_SCHEME_PREFIX + tokenRegexString); 
 
 const tokens = {
-    [Segments.HEADERS]: Joi.object({
+    [Segments.HEADERS]: {
         authorization: Joi.string().pattern(AUTH_HEADER_REGEX).required()
-    }),
+    },
 };
+
+export const authSchema = Joi.object({
+    id: Joi.number().allow(null),
+});
 
 export default {
     registration, login, refresh, tokens

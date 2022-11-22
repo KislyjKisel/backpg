@@ -1,4 +1,3 @@
-import { CelebrateError } from 'celebrate';
 import { ErrorRequestHandler } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { InternalError } from '../errors/common';

@@ -5,6 +5,7 @@ export enum InternalErrorCodes {
     BAD_ENV_VAR = 2,
     UNREACHABLE = 3,
     NOT_VALIDATED = 4,
+    NOT_AUTHENTICATED = 5,
 }
 
 export const InternalErrorNames: ErrorNames<InternalErrorCodes> = {
@@ -12,6 +13,7 @@ export const InternalErrorNames: ErrorNames<InternalErrorCodes> = {
     [InternalErrorCodes.BAD_ENV_VAR]: 'BAD_ENV_VAR',
     [InternalErrorCodes.UNREACHABLE]: 'UNREACHABLE',
     [InternalErrorCodes.NOT_VALIDATED]: 'NOT_VALIDATED',
+    [InternalErrorCodes.NOT_AUTHENTICATED]: 'NOT_AUTHENTICATED',
 };
 
 export const InternalErrorReasons: ErrorMessages<InternalErrorCodes> = {
@@ -19,4 +21,5 @@ export const InternalErrorReasons: ErrorMessages<InternalErrorCodes> = {
     [InternalErrorCodes.BAD_ENV_VAR]: 'Environment variable "%s" is in incorrect format',
     [InternalErrorCodes.UNREACHABLE]: 'Unreachable reached',
     [InternalErrorCodes.NOT_VALIDATED]: 'Request data "%s" did not pass validation',
+    [InternalErrorCodes.NOT_AUTHENTICATED]: 'Not authenticated',
 };

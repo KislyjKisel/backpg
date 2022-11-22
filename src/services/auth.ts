@@ -42,7 +42,7 @@ const registration: Service<RegistrationData, TokenPair> = async (regData) => {
         lastName: regData.lastName,
     });
     if(newUser === null) {
-        throw new AuthError(AuthErrorCodes.USER_EXISTS);
+        throw new AuthError(AuthErrorCodes.USER_ALREADY_EXISTS);
     }
     return createUserTokens(newUser);
 };

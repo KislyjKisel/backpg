@@ -25,5 +25,8 @@
     "lib": ["es2015"],
     "include": [
         "src/"
+    ],
+    "files": [
+        "src/util/express.d.ts"
     ]
 }

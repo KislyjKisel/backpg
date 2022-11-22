@@ -10,17 +10,30 @@ import { StatusCodes } from 'http-status-codes';
 import { NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
 import { AccessTokenPayload } from '@services/auth';
 
-type AuthOptions = undefined;
+export type AuthOptions = {
+    /** true by default */
+    required?: boolean,
+};
 
-function authMiddleware(_opts: AuthOptions): RequestHandler {
+export type AuthData = {
+    id: number,
+};
+
+function authMiddleware(opts: AuthOptions): RequestHandler {
     return (req, _res, next) => {
+        const optRequired = opts.required === undefined ? true : opts.required;
         const authHeader = req.headers.authorization;
+        if(!authHeader && !optRequired) {
+            req.auth = null;
+            next();
+            return;
+        }
         const tokenString = authHeader?.substring(AUTH_SCHEME_PREFIX_LENGTH);
         if(!tokenString) {
             throw new InternalError(InternalErrorCodes.NOT_VALIDATED, 'authentication');
         }
         const payload = <AccessTokenPayload>verifyToken(jwtAccessKey, tokenString);
-        req.body.auth = { id: payload.data.userId };
+        req.auth = { id: payload.data.userId };
         next();
     };
 }
