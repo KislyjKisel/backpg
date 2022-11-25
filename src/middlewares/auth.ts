@@ -39,7 +39,9 @@ function authMiddleware(opts: AuthOptions): RequestHandler {
     };
 }
 
-export function auth(opts: AuthOptions): [RequestHandler, ErrorRequestHandler, RequestHandler] {
+export function auth(opts?: AuthOptions): [RequestHandler, ErrorRequestHandler, RequestHandler] {
+    opts = opts || {};
+
     const authValidationErrorHandler: ErrorRequestHandler = (err, _req, res, next) => {
         if(!(err instanceof CelebrateError)) {
             next(err);
