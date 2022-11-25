@@ -9,10 +9,8 @@ const user: GetController = async (req, res, next) => {
         if(!req.auth) {
             throw new InternalError(InternalErrorCodes.NOT_AUTHENTICATED);
         }
-        const viewedLogin = req.query.login?.toString();
         const profile = await services.user({
-            viewerId: req.auth.id,
-            viewedLogin: viewedLogin || '',
+            id: req.auth.id,
         });
         res.status(StatusCodes.OK).send(profile);
     }
