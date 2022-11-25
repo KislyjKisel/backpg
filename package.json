@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "npx tsc",
-    "lint": "eslint ./src --ext .ts --ext .js",
+    "lint": "npx eslint ./src --ext .ts --ext .js",
     "start": "TS_NODE_BASEURL=./dist node -r tsconfig-paths/register ./dist/index.js"
   },
   "author": "",

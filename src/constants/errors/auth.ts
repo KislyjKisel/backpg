@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+
 import { ErrorMessages, ErrorNames, ErrorStatuses } from './common';
 
 export enum AuthErrorCodes {

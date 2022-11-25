@@ -1,8 +1,10 @@
-import { GetController } from './common';
-import services from '@services/user';
-import { InternalError } from '@errors/common';
-import { InternalErrorCodes } from '@constants/errors/internal';
 import { StatusCodes } from 'http-status-codes';
+
+import { GetController } from './common';
+
+import { InternalErrorCodes } from '@constants/errors/internal';
+import { InternalError } from '@errors/common';
+import services from '@services/user';
 
 const user: GetController = async (req, res, next) => {
     try {

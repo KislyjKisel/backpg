@@ -1,10 +1,10 @@
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
+
 import controllers from '@controllers/post';
-import { authMiddlewareErrorHandler } from '@middlewares/auth';
-import validation from '@validation/post';
-import { auth } from '@middlewares/auth';
+import { auth, authMiddlewareErrorHandler } from '@middlewares/auth';
 import { postErrorHandler } from '@middlewares/post';
+import validation from '@validation/post';
 
 const postRouter = Router();
 postRouter.post('/create', ...auth({}), celebrate(validation.create), controllers.create);

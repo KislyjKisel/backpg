@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+
 import { PostErrorCodes, PostErrorMessages, PostErrorNames, PostErrorStatuses } from '@constants/errors/post';
 
 export class PostError extends Error {

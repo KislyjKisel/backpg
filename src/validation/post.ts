@@ -1,4 +1,5 @@
 import { Joi, Segments } from 'celebrate';
+
 import { postTextMaxLength, postTitleMaxLength } from '@constants/post';
 
 const createPostValidation = {

@@ -1,4 +1,6 @@
+import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import express from 'express';
 {
     const dotenvResult = dotenv.config({ path: './.env' });
     if(dotenvResult.error) {
@@ -7,9 +9,7 @@ import dotenv from 'dotenv';
     }
 }
 
-import express from 'express';
 import { apiRouter } from './routes/api';
-import bodyParser from 'body-parser';
 
 const app = express();
 

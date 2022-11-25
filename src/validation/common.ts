@@ -1,4 +1,5 @@
 import { Joi } from 'celebrate';
+
 import * as consts from '../constants/user';
 
 export const loginSchema = Joi.string()

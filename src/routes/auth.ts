@@ -1,5 +1,6 @@
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
+
 import controllers from '../controllers/auth';
 import { authServicesErrorHandler } from '../middlewares/auth';
 import validation from '../validation/auth';

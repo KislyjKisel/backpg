@@ -1,7 +1,7 @@
-import { AuthErrorCodes } from '../constants/errors/auth';
 import { UserErrorCodes } from '../constants/errors/user';
 import { UserError } from '../errors/user';
 import { findUserById } from '../repositories/user';
+
 import { Service } from './common';
 
 const user: Service<

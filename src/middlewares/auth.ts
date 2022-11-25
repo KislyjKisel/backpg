@@ -1,15 +1,17 @@
 import { celebrate, CelebrateError } from 'celebrate';
 import { ErrorRequestHandler, RequestHandler } from 'express';
-import { jwtAccessKey } from '@constants/auth';
+import { StatusCodes } from 'http-status-codes';
+import { NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
+
 import { InternalErrorCodes } from '../constants/errors/internal';
 import { AuthError } from '../errors/auth';
 import { InternalError } from '../errors/common';
 import { verifyToken } from '../util/jwt';
-import validation, { AUTH_SCHEME_PREFIX_LENGTH } from '@validation/auth';
-import { StatusCodes } from 'http-status-codes';
-import { NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
+
+
+import { jwtAccessKey } from '@constants/auth';
 import { AccessTokenPayload } from '@services/auth';
-import { AuthErrorCodes } from '../constants/errors/auth';
+import validation, { AUTH_SCHEME_PREFIX_LENGTH } from '@validation/auth';
 
 export type AuthOptions = {
     /** true by default */

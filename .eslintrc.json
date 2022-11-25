@@ -47,6 +47,22 @@
         "semi": [
             "error",
             "always"
+        ],
+        "import/order": [
+            "error",
+            {
+                "pathGroups": [
+                    {
+                        "pattern": "@**",
+                        "group": "external",
+                        "position": "after"
+                    }
+                ],
+                "alphabetize": {
+                    "order": "asc"
+                },
+                "newlines-between": "always"
+            }
         ]
     }
 }

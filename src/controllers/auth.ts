@@ -1,6 +1,8 @@
 import { StatusCodes } from 'http-status-codes';
-import services, { Credentials, RefreshData, RegistrationData } from '@services/auth';
+
 import { Controller } from './common';
+
+import services, { Credentials, RefreshData, RegistrationData } from '@services/auth';
 
 const registration: Controller<RegistrationData> = async (req, res, next) => {
     try {
