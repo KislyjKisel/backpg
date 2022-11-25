@@ -1,4 +1,4 @@
-import { AuthData } from '@middlewares/auth';
+import { AuthData } from '~/middlewares/auth';
 
 declare global {
     namespace Express {

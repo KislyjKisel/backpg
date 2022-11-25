@@ -1,10 +1,10 @@
 import { StatusCodes } from 'http-status-codes';
 
-import { Controller, GetController } from './common';
+import { InternalErrorCodes } from '~/constants/errors/internal';
+import { InternalError } from '~/errors/common';
+import services from '~/services/post';
 
-import { InternalErrorCodes } from '@constants/errors/internal';
-import { InternalError } from '@errors/common';
-import services from '@services/post';
+import { Controller, GetController } from './common';
 
 const createPostController: Controller<{ title: string, text: string }> = async (req, res, next) => {
     try {

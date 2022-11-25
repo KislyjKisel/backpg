@@ -1,8 +1,9 @@
 import { Segments, Joi } from 'celebrate';
 
+import { tokenRegexString } from '~/util/jwt';
+
 import { loginSchema, passwordSchema, firstNameSchema, lastNameSchema } from './common';
 
-import { tokenRegexString } from '@util/jwt';
 
 
 export const TTL_PATTERN = /^\d+[smh]$/;

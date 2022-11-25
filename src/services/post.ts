@@ -1,8 +1,9 @@
-import { Service } from './common';
 
-import { PostErrorCodes } from '@constants/errors/post';
-import { PostError } from '@errors/post';
-import { addPost, findPostById } from '@repositories/post';
+import { PostErrorCodes } from '~/constants/errors/post';
+import { PostError } from '~/errors/post';
+import { addPost, findPostById } from '~/repositories/post';
+
+import { Service } from './common';
 
 const createPostService: Service<
     { title: string, text: string, authorId: number },
