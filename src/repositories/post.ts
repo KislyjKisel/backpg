@@ -1,6 +1,6 @@
 import { Post } from '@prisma/client';
 
-import { prisma } from '../util/prisma'; 
+import { prisma } from '@util/prisma';
 
 export async function addPost(post: { title: string, text: string, authorId: number }): Promise<Post> {
     return await prisma.post.create({

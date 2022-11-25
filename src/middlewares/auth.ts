@@ -3,14 +3,12 @@ import { ErrorRequestHandler, RequestHandler } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
 
-import { InternalErrorCodes } from '../constants/errors/internal';
-import { AuthError } from '../errors/auth';
-import { InternalError } from '../errors/common';
-import { verifyToken } from '../util/jwt';
-
-
 import { jwtAccessKey } from '@constants/auth';
+import { InternalErrorCodes } from '@constants/errors/internal';
+import { AuthError } from '@errors/auth';
+import { InternalError } from '@errors/common';
 import { AccessTokenPayload } from '@services/auth';
+import { verifyToken } from '@util/jwt';
 import validation, { AUTH_SCHEME_PREFIX_LENGTH } from '@validation/auth';
 
 export type AuthOptions = {

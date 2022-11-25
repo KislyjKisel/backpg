@@ -2,13 +2,14 @@ import { User } from '@prisma/client';
 import * as argon2 from 'argon2';
 import { JwtPayload } from 'jsonwebtoken';
 
-import { jwtAccessKey, jwtAccessTtl, jwtRefreshKey, jwtRefreshTtl } from '../constants/auth';
-import { AuthErrorCodes } from '../constants/errors/auth';
-import { AuthError } from '../errors/auth';
-import { addUser, findUserById, findUserByLogin } from '../repositories/user';
-import { createToken, verifyToken } from '../util/jwt';
-
 import { Service } from './common';
+
+import { jwtAccessKey, jwtAccessTtl, jwtRefreshKey, jwtRefreshTtl } from '@constants/auth';
+import { AuthErrorCodes } from '@constants/errors/auth';
+import { AuthError } from '@errors/auth';
+import { addUser, findUserById, findUserByLogin } from '@repositories/user';
+import { createToken, verifyToken } from '@util/jwt';
+
 
 
 

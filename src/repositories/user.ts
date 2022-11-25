@@ -1,8 +1,8 @@
 import { Prisma, User } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 
-import { PrismaKnownErrorCodes } from '../constants/prisma';
-import { prisma } from '../util/prisma';
+import { PrismaKnownErrorCodes } from '@constants/prisma';
+import { prisma } from '@util/prisma';
 
 /**
  * @returns null when the user already exists
