@@ -5,6 +5,7 @@ import authControllers from '~/controllers/auth';
 import { authServicesErrorHandler } from '~/middlewares/auth';
 import authRequestsValidation from '~/validation/auth';
 
+
 const authRouter = Router();
 authRouter.post('/register', celebrate(authRequestsValidation.registration), authControllers.registration);
 authRouter.post('/login', celebrate(authRequestsValidation.login), authControllers.login);

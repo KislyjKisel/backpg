@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
+
 type CodeMap<C extends number, V> = {
     [T in C]: {
         [i: number]: V

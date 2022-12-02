@@ -6,6 +6,7 @@ import { auth, authMiddlewareErrorHandler } from '~/middlewares/auth';
 import { postErrorHandler } from '~/middlewares/post';
 import postRequestsValidation from '~/validation/post';
 
+
 const postRouter = Router();
 postRouter.post('/create', ...auth({}), celebrate(postRequestsValidation.create), postControllers.create);
 postRouter.get('/view', celebrate(postRequestsValidation.view), postControllers.view);

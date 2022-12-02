@@ -5,7 +5,6 @@ import { tokenRegexString } from '~/util/jwt';
 import { loginSchema, passwordSchema, firstNameSchema, lastNameSchema } from './common';
 
 
-
 export const TTL_PATTERN = /^\d+[smh]$/;
 
 const refreshRequestSchema = {

@@ -1,5 +1,6 @@
 import { ErrorMessages, ErrorNames } from './common';
 
+
 export enum InternalErrorCodes {
     NO_ENV_VAR = 1,
     BAD_ENV_VAR = 2,

@@ -11,6 +11,7 @@ import { AccessTokenPayload } from '~/services/auth';
 import { verifyToken } from '~/util/jwt';
 import { authHeaderSchema, AUTH_SCHEME_PREFIX_LENGTH } from '~/validation/auth';
 
+
 export type AuthOptions = {
     /** true by default */
     required?: boolean,

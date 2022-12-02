@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { ErrorMessages, ErrorNames, ErrorStatuses } from './common';
 
+
 export enum UserErrorCodes {
     USER_DOES_NOT_EXIST = 1,
 }

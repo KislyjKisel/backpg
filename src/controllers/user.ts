@@ -1,11 +1,11 @@
 import { StatusCodes } from 'http-status-codes';
 
-
 import { InternalErrorCodes } from '~/constants/errors/internal';
 import { InternalError } from '~/errors/common';
 import userServices from '~/services/user';
 
 import { GetController } from './common';
+
 
 const userController: GetController = async (req, res, next) => {
     try {

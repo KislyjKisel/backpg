@@ -1,5 +1,6 @@
 import { envInt } from '~/util/env';
 
+
 export const loginMinLength = envInt('LOGIN_MIN_LENGTH');
 export const loginMaxLength = envInt('LOGIN_MAX_LENGTH');
 export const passwordMinLength = envInt('PASSWORD_MIN_LENGTH');

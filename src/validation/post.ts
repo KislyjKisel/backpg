@@ -2,6 +2,7 @@ import { Joi, Segments } from 'celebrate';
 
 import { postTextMaxLength, postTitleMaxLength } from '~/constants/post';
 
+
 const createPostRequestSchema = {
     [Segments.BODY]: {
         text: Joi.string().pattern(new RegExp(`^[A-Za-z ]{1,${postTextMaxLength}}`)).required(),

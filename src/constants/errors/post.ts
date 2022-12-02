@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { ErrorMessages, ErrorNames, ErrorStatuses } from './common';
 
+
 export enum PostErrorCodes {
     POST_NOT_FOUND = 1,
 }

@@ -1,6 +1,7 @@
 import { InternalErrorCodes } from '~/constants/errors/internal';
 import { InternalError } from '~/errors/common';
 
+
 function env<T>(name: string, parser: (v: string) => T | null): T {
     const value = process.env[name];
     if(!value) throw new InternalError(InternalErrorCodes.NO_ENV_VAR, name);

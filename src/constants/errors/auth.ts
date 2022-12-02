@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { ErrorMessages, ErrorNames, ErrorStatuses } from './common';
 
+
 export enum AuthErrorCodes {
     USER_ALREADY_EXISTS = 1,
     BAD_CREDENTIALS = 2,

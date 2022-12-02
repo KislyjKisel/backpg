@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { UserErrorCodes, UserErrorMessages, UserErrorNames, UserErrorStatuses } from '~/constants/errors/user';
 
+
 export class UserError extends Error {
     status: StatusCodes;
 
