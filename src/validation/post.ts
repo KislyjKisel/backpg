@@ -1,12 +1,12 @@
 import { Joi, Segments } from 'celebrate';
 
-import { postTextMaxLength, postTitleMaxLength } from '~/constants/post';
+import { POST_TEXT_MAX_LENGTH, POST_TITLE_MAX_LENGTH } from '~/constants/post';
 
 
 const createPostRequestSchema = {
     [Segments.BODY]: {
-        text: Joi.string().pattern(new RegExp(`^[A-Za-z ]{1,${postTextMaxLength}}`)).required(),
-        title: Joi.string().pattern(new RegExp(`^[A-Za-z ]{1,${postTitleMaxLength}}`)).required(),
+        text: Joi.string().pattern(new RegExp(`^[A-Za-z ]{1,${POST_TEXT_MAX_LENGTH}}`)).required(),
+        title: Joi.string().pattern(new RegExp(`^[A-Za-z ]{1,${POST_TITLE_MAX_LENGTH}}`)).required(),
     },
 };
 

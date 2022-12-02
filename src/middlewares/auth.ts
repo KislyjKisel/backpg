@@ -3,7 +3,7 @@ import { ErrorRequestHandler, RequestHandler } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
 
-import { jwtAccessKey } from '~/constants/auth';
+import { JWT_ACCESS_KEY } from '~/constants/auth';
 import { InternalErrorCodes } from '~/constants/errors/internal';
 import { AuthError } from '~/errors/auth';
 import { InternalError } from '~/errors/common';
@@ -34,7 +34,7 @@ function authMiddleware(opts: AuthOptions): RequestHandler {
         if(!tokenString) {
             throw new InternalError(InternalErrorCodes.NOT_VALIDATED, 'authentication');
         }
-        const payload = <AccessTokenPayload>verifyToken(jwtAccessKey, tokenString);
+        const payload = <AccessTokenPayload>verifyToken(JWT_ACCESS_KEY, tokenString);
         req.auth = { id: payload.data.userId };
         next();
     };

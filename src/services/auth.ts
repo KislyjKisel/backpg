@@ -2,7 +2,7 @@ import { User } from '@prisma/client';
 import * as argon2 from 'argon2';
 import { JwtPayload } from 'jsonwebtoken';
 
-import { jwtAccessKey, jwtAccessTtl, jwtRefreshKey, jwtRefreshTtl } from '~/constants/auth';
+import { JWT_ACCESS_KEY, JWT_ACCESS_TTL, JWT_REFRESH_KEY, JWT_REFRESH_TTL } from '~/constants/auth';
 import { AuthErrorCodes } from '~/constants/errors/auth';
 import { AuthError } from '~/errors/auth';
 import { addUser, findUserById, findUserByLogin } from '~/repositories/user';
@@ -24,15 +24,15 @@ export type RegistrationData = Credentials & { firstName: string, lastName: stri
 export type RefreshData = { refreshToken: string };
 
 const createUserTokens = (user: User): TokenPair => {
-    const accessToken = createToken(jwtAccessKey, <AccessTokenPayload>{
+    const accessToken = createToken(JWT_ACCESS_KEY, <AccessTokenPayload>{
         data: { userId: user.id }
     }, {
-        expiresIn: jwtAccessTtl
+        expiresIn: JWT_ACCESS_TTL
     });
-    const refreshToken = createToken(jwtRefreshKey, <RefreshTokenPayload>{
+    const refreshToken = createToken(JWT_REFRESH_KEY, <RefreshTokenPayload>{
         data: { userId: user.id }
     }, {
-        expiresIn: jwtRefreshTtl
+        expiresIn: JWT_REFRESH_TTL
     });
     return { accessToken, refreshToken };
 };
@@ -59,7 +59,7 @@ const loginService: Service<Credentials, TokenPair> = async (credentials) => {
 };
 
 const refreshService: Service<RefreshData, TokenPair> = async ({ refreshToken }) => {
-    const payload = <RefreshTokenPayload>verifyToken(jwtRefreshKey, refreshToken);
+    const payload = <RefreshTokenPayload>verifyToken(JWT_REFRESH_KEY, refreshToken);
     const user = await findUserById(payload.data.userId);
     if(user === null) {
         throw new AuthError(AuthErrorCodes.USER_REMOVED);

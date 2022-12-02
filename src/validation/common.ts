@@ -5,13 +5,13 @@ import * as consts from '~/constants/user';
 
 export const loginSchema = Joi.string()
     .alphanum()
-    .min(consts.loginMinLength)
-    .max(consts.loginMaxLength);
+    .min(consts.LOGIN_MIN_LENGTH)
+    .max(consts.LOGIN_MAX_LENGTH);
 
 export const passwordSchema = Joi.string()
     .alphanum()
-    .min(consts.passwordMinLength)
-    .max(consts.passwordMaxLength);
+    .min(consts.PASSWORD_MIN_LENGTH)
+    .max(consts.PASSWORD_MAX_LENGTH);
 
 export const firstNameSchema = Joi.string()
     .pattern(consts.FIRSTNAME_PATTERN);
