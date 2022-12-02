@@ -12,7 +12,9 @@ export async function addUser(user: Prisma.UserCreateInput): Promise<User | null
         return await prisma.user.create({ data: user });
     }
     catch(e) {
-        if(e instanceof PrismaClientKnownRequestError && e.code == PrismaKnownErrorCodes.UniqueConstraintFailed) {
+        if(e instanceof PrismaClientKnownRequestError &&
+            e.code == PrismaKnownErrorCodes.UNIQUE_CONSTRAINT_FAILED
+        ) {
             return null;
         }
         else {
