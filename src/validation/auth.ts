@@ -48,7 +48,3 @@ export const authHeaderSchema = {
         authorization: Joi.string().pattern(AUTH_HEADER_REGEX).required(),
     }).unknown(true),
 };
-
-export const authSchema = Joi.object({
-    id: Joi.number().allow(null),
-});

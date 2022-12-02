@@ -1,7 +1,7 @@
 import { celebrate, CelebrateError } from 'celebrate';
 import { ErrorRequestHandler, RequestHandler } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
+import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
 
 import { jwtAccessKey } from '~/constants/auth';
 import { InternalErrorCodes } from '~/constants/errors/internal';
@@ -9,7 +9,7 @@ import { AuthError } from '~/errors/auth';
 import { InternalError } from '~/errors/common';
 import { AccessTokenPayload } from '~/services/auth';
 import { verifyToken } from '~/util/jwt';
-import validation, { AUTH_SCHEME_PREFIX_LENGTH } from '~/validation/auth';
+import { authHeaderSchema, AUTH_SCHEME_PREFIX_LENGTH } from '~/validation/auth';
 
 export type AuthOptions = {
     /** true by default */
@@ -51,7 +51,7 @@ export function auth(opts?: AuthOptions): [RequestHandler, ErrorRequestHandler, 
     };
 
     return [
-        celebrate(validation.authHeader),
+        celebrate(authHeaderSchema),
         authValidationErrorHandler,
         authMiddleware(opts)
     ];
@@ -72,6 +72,10 @@ export const authMiddlewareErrorHandler: ErrorRequestHandler = (err, _req, res, 
     }
     if(err instanceof NotBeforeError) {
         res.status(StatusCodes.UNAUTHORIZED).send('Token used too early');
+        return;
+    }
+    if(err instanceof JsonWebTokenError) {
+        res.status(StatusCodes.UNAUTHORIZED).send('Invalid token');
         return;
     }
     next(err);
