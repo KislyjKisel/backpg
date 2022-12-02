@@ -5,11 +5,13 @@ import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtok
 
 import { JWT_ACCESS_KEY } from '~/constants/auth';
 import { InternalErrorCodes } from '~/constants/errors/internal';
-import { AuthError } from '~/errors/auth';
+import AuthError from '~/errors/auth';
 import { InternalError } from '~/errors/common';
 import { AccessTokenPayload } from '~/services/auth';
 import { verifyToken } from '~/util/jwt';
 import { authHeaderSchema, AUTH_SCHEME_PREFIX_LENGTH } from '~/validation/auth';
+
+import { makeErrorHandler } from './common';
 
 
 export type AuthOptions = {
@@ -58,14 +60,6 @@ export function auth(opts?: AuthOptions): [RequestHandler, ErrorRequestHandler, 
     ];
 }
 
-export const authServicesErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-    if(!(err instanceof AuthError)) {
-        authMiddlewareErrorHandler(err, req, res, next); // refresh can fail on bad tokens
-        return;
-    }
-    res.status(err.status).send(err.message);
-};
-
 export const authMiddlewareErrorHandler: ErrorRequestHandler = (err, _req, res, next) => {
     if(err instanceof TokenExpiredError) {
         res.status(StatusCodes.UNAUTHORIZED).send('Token expired');
@@ -81,3 +75,8 @@ export const authMiddlewareErrorHandler: ErrorRequestHandler = (err, _req, res, 
     }
     next(err);
 };
+
+export const authServicesErrorHandlers = [
+    makeErrorHandler(AuthError),
+    authMiddlewareErrorHandler, // refresh can fail on bad tokens
+];

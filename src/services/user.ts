@@ -1,5 +1,5 @@
 import { UserErrorCodes } from '~/constants/errors/user';
-import { UserError } from '~/errors/user';
+import UserError from '~/errors/user';
 import { findUserById } from '~/repositories/user';
 
 import { Service } from './common';

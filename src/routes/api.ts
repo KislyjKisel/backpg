@@ -1,7 +1,7 @@
 import { errors } from 'celebrate';
 import { Router } from 'express';
 
-import { errorHandler } from '~/middlewares/common';
+import { fallbackErrorHandler } from '~/middlewares/common';
 
 import authRouter from './auth';
 import postRouter from './post';
@@ -13,5 +13,5 @@ apiRouter.use('/auth', authRouter);
 apiRouter.use(userRouter);
 apiRouter.use('/post', postRouter);
 apiRouter.use(errors());
-apiRouter.use(errorHandler);
+apiRouter.use(fallbackErrorHandler);
 export default apiRouter;

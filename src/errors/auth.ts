@@ -1,14 +1,12 @@
-import { StatusCodes } from 'http-status-codes';
+import { AuthErrorMessages, AuthErrorNames, AuthErrorStatuses } from '~/constants/errors/auth';
 
-import { AuthErrorCodes, AuthErrorMessages, AuthErrorNames, AuthErrorStatuses } from '~/constants/errors/auth';
+import { makeErrorClass } from './common';
 
 
-export class AuthError extends Error {
-    status: StatusCodes;
+const AuthError = makeErrorClass(
+    AuthErrorNames,
+    AuthErrorMessages,
+    AuthErrorStatuses
+);
 
-    constructor(code: AuthErrorCodes) {
-        super(AuthErrorMessages[code]);
-        this.name = AuthErrorNames[code];
-        this.status = AuthErrorStatuses[code];
-    }
-}
+export default AuthError;

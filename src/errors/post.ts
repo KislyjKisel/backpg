@@ -1,14 +1,12 @@
-import { StatusCodes } from 'http-status-codes';
+import { PostErrorMessages, PostErrorNames, PostErrorStatuses } from '~/constants/errors/post';
 
-import { PostErrorCodes, PostErrorMessages, PostErrorNames, PostErrorStatuses } from '~/constants/errors/post';
+import { makeErrorClass } from './common';
 
 
-export class PostError extends Error {
-    status: StatusCodes;
+const PostError = makeErrorClass(
+    PostErrorNames,
+    PostErrorMessages,
+    PostErrorStatuses,
+);
 
-    constructor(code: PostErrorCodes) {
-        super(PostErrorMessages[code]);
-        this.name = PostErrorNames[code];
-        this.status = PostErrorStatuses[code];
-    }
-}
+export default PostError;

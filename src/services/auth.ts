@@ -4,7 +4,7 @@ import { JwtPayload } from 'jsonwebtoken';
 
 import { JWT_ACCESS_KEY, JWT_ACCESS_TTL, JWT_REFRESH_KEY, JWT_REFRESH_TTL } from '~/constants/auth';
 import { AuthErrorCodes } from '~/constants/errors/auth';
-import { AuthError } from '~/errors/auth';
+import AuthError from '~/errors/auth';
 import { addUser, findUserById, findUserByLogin } from '~/repositories/user';
 import { createToken, verifyToken } from '~/util/jwt';
 

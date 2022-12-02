@@ -1,5 +1,5 @@
 import { PostErrorCodes } from '~/constants/errors/post';
-import { PostError } from '~/errors/post';
+import PostError from '~/errors/post';
 import { addPost, findPostById } from '~/repositories/post';
 
 import { Service } from './common';

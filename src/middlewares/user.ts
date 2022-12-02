@@ -1,12 +1,6 @@
-import { ErrorRequestHandler } from 'express';
+import UserError from '~/errors/user';
 
-import { UserError } from '~/errors/user';
+import { makeErrorHandler } from './common';
 
 
-export const userErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-    if(!(err instanceof UserError)) {
-        next(err);
-        return;
-    }
-    res.status(err.status).send(err.message);
-};
+export const userErrorHandler = makeErrorHandler(UserError);
