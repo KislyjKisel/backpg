@@ -40,7 +40,7 @@ const createUserTokens = (user: User): TokenPair => {
     return { accessToken, refreshToken };
 };
 
-const registration: Service<RegistrationData, TokenPair> = async (regData) => {
+const registrationService: Service<RegistrationData, TokenPair> = async (regData) => {
     const newUser = await addUser({
         login: regData.login,
         passwordHash: await argon2.hash(regData.password),
@@ -53,7 +53,7 @@ const registration: Service<RegistrationData, TokenPair> = async (regData) => {
     return createUserTokens(newUser);
 };
 
-const login: Service<Credentials, TokenPair> = async (credentials) => {
+const loginService: Service<Credentials, TokenPair> = async (credentials) => {
     const user = await findUserByLogin(credentials.login);
     if(user === null || !(await argon2.verify(user.passwordHash, credentials.password))) {
         throw new AuthError(AuthErrorCodes.BAD_CREDENTIALS);
@@ -61,7 +61,7 @@ const login: Service<Credentials, TokenPair> = async (credentials) => {
     return createUserTokens(user);
 };
 
-const refresh: Service<RefreshData, TokenPair> = async ({ refreshToken }) => {
+const refreshService: Service<RefreshData, TokenPair> = async ({ refreshToken }) => {
     const payload = <RefreshTokenPayload>verifyToken(jwtRefreshKey, refreshToken);
     const user = await findUserById(payload.data.userId);
     if(user === null) {
@@ -70,6 +70,10 @@ const refresh: Service<RefreshData, TokenPair> = async ({ refreshToken }) => {
     return createUserTokens(user);
 };
 
-export default {
-    registration, login, refresh
+const authServices = {
+    registration: registrationService,
+    login: loginService,
+    refresh: refreshService,
 };
+
+export default authServices;

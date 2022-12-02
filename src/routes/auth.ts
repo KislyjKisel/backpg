@@ -1,13 +1,13 @@
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
 
-import controllers from '~/controllers/auth';
+import authControllers from '~/controllers/auth';
 import { authServicesErrorHandler } from '~/middlewares/auth';
-import validation from '~/validation/auth';
+import authRequestsValidation from '~/validation/auth';
 
 const authRouter = Router();
-authRouter.post('/register', celebrate(validation.registration), controllers.registration);
-authRouter.post('/login', celebrate(validation.login), controllers.login);
-authRouter.post('/refresh', celebrate(validation.refresh), controllers.refresh);
+authRouter.post('/register', celebrate(authRequestsValidation.registration), authControllers.registration);
+authRouter.post('/login', celebrate(authRequestsValidation.login), authControllers.login);
+authRouter.post('/refresh', celebrate(authRequestsValidation.refresh), authControllers.refresh);
 authRouter.use(authServicesErrorHandler);
 export default authRouter;

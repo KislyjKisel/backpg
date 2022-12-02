@@ -30,7 +30,9 @@ const viewPostService: Service<
     };
 };
 
-export default {
+const postServices = {
     create: createPostService,
     view: viewPostService,
 };
+
+export default postServices;

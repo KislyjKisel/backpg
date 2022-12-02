@@ -51,7 +51,7 @@ export function auth(opts?: AuthOptions): [RequestHandler, ErrorRequestHandler, 
     };
 
     return [
-        celebrate(validation.tokens),
+        celebrate(validation.authHeader),
         authValidationErrorHandler,
         authMiddleware(opts)
     ];

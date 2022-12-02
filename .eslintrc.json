@@ -48,6 +48,7 @@
             "error",
             "always"
         ],
+        "import/no-anonymous-default-export": "error",
         "import/order": [
             "error",
             {

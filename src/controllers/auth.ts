@@ -1,13 +1,13 @@
 import { StatusCodes } from 'http-status-codes';
 
-import services, { Credentials, RefreshData, RegistrationData } from '~/services/auth';
+import authServices, { Credentials, RefreshData, RegistrationData } from '~/services/auth';
 
 import { Controller } from './common';
 
 
-const registration: Controller<RegistrationData> = async (req, res, next) => {
+const registrationController: Controller<RegistrationData> = async (req, res, next) => {
     try {
-        const tokens = await services.registration({
+        const tokens = await authServices.registration({
             login: req.body.login,
             password: req.body.password,
             firstName: req.body.firstName,
@@ -20,9 +20,9 @@ const registration: Controller<RegistrationData> = async (req, res, next) => {
     }
 };
 
-const login: Controller<Credentials> = async (req, res, next) => {
+const loginController: Controller<Credentials> = async (req, res, next) => {
     try {
-        const tokens = await services.login({
+        const tokens = await authServices.login({
             login: req.body.login,
             password: req.body.password,
         });
@@ -33,9 +33,9 @@ const login: Controller<Credentials> = async (req, res, next) => {
     }
 };
 
-const refresh: Controller<RefreshData> = async (req, res, next) => {
+const refreshController: Controller<RefreshData> = async (req, res, next) => {
     try {
-        const tokens = await services.refresh({
+        const tokens = await authServices.refresh({
             refreshToken: req.body.refreshToken
         });
         res.status(StatusCodes.OK).send(tokens);
@@ -45,6 +45,10 @@ const refresh: Controller<RefreshData> = async (req, res, next) => {
     }
 };
 
-export default {
-    login, registration, refresh
+const authControllers = {
+    login: loginController,
+    registration: registrationController,
+    refresh: refreshController,
 };
+
+export default authControllers;

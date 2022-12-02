@@ -6,7 +6,7 @@ import { findUserById } from '~/repositories/user';
 import { Service } from './common';
 
 
-const user: Service<
+const userService: Service<
     { id: number },
     { login: string, firstName?: string, lastName?: string }
 > = async ({ id }) => {
@@ -21,6 +21,8 @@ const user: Service<
     };
 };
 
-export default {
-    user
+const userServices = {
+    user: userService,
 };
+
+export default userServices;
