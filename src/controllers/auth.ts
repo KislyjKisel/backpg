@@ -12,6 +12,7 @@ const registrationController: Controller<RegistrationData> = async (req, res, ne
             password: req.body.password,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
+            avatarId: req.body.avatarId,
         });
         res.status(StatusCodes.CREATED).send(tokens);
     }

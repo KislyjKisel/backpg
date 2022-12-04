@@ -2,3 +2,6 @@ node_modules/
 dist/
 prisma/migrations/
 .env
+
+# .env dependent
+img/

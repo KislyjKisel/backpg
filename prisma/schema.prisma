@@ -8,12 +8,13 @@ datasource db {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
-  login        String  @unique @db.VarChar(20)
-  passwordHash String  @db.VarChar(128)
-  firstName    String  @db.VarChar(16)
-  lastName     String  @db.VarChar(16)
-  posts        Post[]  @relation("Posts")
+  id           Int      @id @default(autoincrement())
+  login        String   @unique @db.VarChar(20)
+  passwordHash String   @db.VarChar(128)
+  firstName    String   @db.VarChar(16)
+  lastName     String   @db.VarChar(16)
+  avatarId     String?  @db.VarChar(36)
+  posts        Post[]   @relation("Posts")
 }
 
 model Post {

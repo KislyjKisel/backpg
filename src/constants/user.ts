@@ -13,3 +13,6 @@ const LAST_NAME_MAX_LENGTH = envInt('LASTNAME_MAX_LENGTH');
 
 export const FIRSTNAME_PATTERN = new RegExp(`^[A-Za-z]{${FIRST_NAME_MIN_LENGTH},${FIRST_NAME_MAX_LENGTH}}$`);
 export const LASTNAME_PATTERN = new RegExp(`^[A-Za-z]{${LAST_NAME_MIN_LENGTH},${LAST_NAME_MAX_LENGTH}}$`);
+
+export const AVATAR_TYPE = 'webp';
+export const AVATAR_SIZE = 128;

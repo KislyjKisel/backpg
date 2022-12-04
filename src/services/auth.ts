@@ -20,7 +20,11 @@ export type TokenPair = {
 };
 
 export type Credentials = { login: string, password: string };
-export type RegistrationData = Credentials & { firstName: string, lastName: string };
+export type RegistrationData = Credentials & {
+    firstName: string,
+    lastName: string,
+    avatarId?: string,
+};
 export type RefreshData = { refreshToken: string };
 
 const createUserTokens = (user: User): TokenPair => {
@@ -43,6 +47,7 @@ const registrationService: Service<RegistrationData, TokenPair> = async (regData
         passwordHash: await argon2.hash(regData.password),
         firstName: regData.firstName,
         lastName: regData.lastName,
+        avatarId: regData.avatarId,
     });
     if(newUser === null) {
         throw new AuthError(AuthErrorCodes.USER_ALREADY_EXISTS);

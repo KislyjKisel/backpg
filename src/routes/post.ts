@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
 
@@ -8,6 +9,7 @@ import postRequestsValidation from '~/validation/post';
 
 
 const postRouter = Router();
+postRouter.use(bodyParser.json());
 postRouter.post('/create', ...auth({}), celebrate(postRequestsValidation.create), postControllers.create);
 postRouter.get('/view', celebrate(postRequestsValidation.view), postControllers.view);
 postRouter.use(postErrorHandler);

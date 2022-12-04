@@ -9,6 +9,7 @@ export enum AuthErrorCodes {
     USER_REMOVED = 3,
     NOT_AUTHORIZED = 4,
     NOT_AUTHENTICATED = 5,
+    BAD_AVATAR = 6,
 }
 
 export const AuthErrorNames: ErrorNames<AuthErrorCodes> = {
@@ -17,6 +18,7 @@ export const AuthErrorNames: ErrorNames<AuthErrorCodes> = {
     [AuthErrorCodes.USER_REMOVED]: 'USER_REMOVED',
     [AuthErrorCodes.NOT_AUTHORIZED]: 'NOT_AUTHORIZED',
     [AuthErrorCodes.NOT_AUTHENTICATED]: 'NOT_AUTHENTICATED',
+    [AuthErrorCodes.BAD_AVATAR]: 'BAD_AVATAR',
 };
 
 export const AuthErrorMessages: ErrorMessages<AuthErrorCodes> = {
@@ -25,6 +27,7 @@ export const AuthErrorMessages: ErrorMessages<AuthErrorCodes> = {
     [AuthErrorCodes.USER_REMOVED]: 'User was removed',
     [AuthErrorCodes.NOT_AUTHORIZED]: 'Not authorized',
     [AuthErrorCodes.NOT_AUTHENTICATED]: 'Not authenticated',
+    [AuthErrorCodes.BAD_AVATAR]: 'Bad avatar',
 };
 
 export const AuthErrorStatuses: ErrorStatuses<AuthErrorCodes> = {
@@ -33,4 +36,5 @@ export const AuthErrorStatuses: ErrorStatuses<AuthErrorCodes> = {
     [AuthErrorCodes.USER_REMOVED]: StatusCodes.CONFLICT,
     [AuthErrorCodes.NOT_AUTHORIZED]: StatusCodes.UNAUTHORIZED,
     [AuthErrorCodes.NOT_AUTHENTICATED]: StatusCodes.UNAUTHORIZED,
+    [AuthErrorCodes.BAD_AVATAR]: StatusCodes.BAD_REQUEST,
 };
