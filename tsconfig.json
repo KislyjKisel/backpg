@@ -27,6 +27,6 @@
         "src/"
     ],
     "files": [
-        "src/util/express.d.ts"
+        "src/util/auth.d.ts"
     ]
 }
