@@ -41,13 +41,13 @@ const registrationRequestSchema = {
     })
 };
 
-const authRequestsValidation = {
+const authRequestSchemes = {
     registration: registrationRequestSchema,
     login: loginRequestSchema,
     refresh: refreshRequestSchema
 };
 
-export default authRequestsValidation;
+export default authRequestSchemes;
 
 
 const AUTH_SCHEME_PREFIX = 'Bearer ';
