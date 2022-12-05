@@ -1,3 +1,4 @@
+import { rm } from 'fs';
 import path from 'path';
 import { promisify } from 'util';
 
@@ -72,6 +73,10 @@ export const registrationAvatarValidator: RequestHandler = async (req, _res, nex
                 avatarInfo?.height !== AVATAR_SIZE ||
                 avatarInfo?.width !== AVATAR_SIZE
             ) {
+                rm(req.file.path, (_err) => {
+                    // todo: handle invalid avatar removal error
+                    console.error(_err);
+                });
                 next(new AuthError(AuthErrorCodes.BAD_AVATAR));
             }
             req.body.avatarId = req.file.filename.substring(0, req.file.filename.length - AVATAR_TYPE.length - 1);
