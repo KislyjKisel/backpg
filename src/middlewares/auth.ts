@@ -9,8 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { JWT_ACCESS_KEY } from '~/constants/auth';
 import { InternalErrorCodes } from '~/constants/errors/internal';
+import { KILOBYTE_BYTES } from '~/constants/memory';
 import { IMAGES_DIR } from '~/constants/paths';
-import { AVATAR_TYPE } from '~/constants/user';
+import { AVATAR_FILESIZE_MAX_KB, AVATAR_TYPE } from '~/constants/user';
 import AuthError from '~/errors/auth';
 import { InternalError } from '~/errors/common';
 import { AccessTokenPayload } from '~/services/auth';
@@ -38,6 +39,7 @@ const multerStorage = multer.diskStorage({
 export const registrationRequestParser = multer({
     storage: multerStorage,
     dest: IMAGES_DIR + '/',
+    limits: { fileSize: AVATAR_FILESIZE_MAX_KB * KILOBYTE_BYTES },
 }).single('avatar');
 
 function authMiddleware(opts: AuthOptions): RequestHandler {
